@@ -3,6 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { marked } from 'marked';
 import './MarkdownPreviewer.scss';
 
+// Configure marked to use line breaks
+marked.setOptions({
+  breaks: true
+});
+
 const MarkdownPreviewer = () => {
   const [markdown, setMarkdown] = useState(`# Welcome to my Markdown Previewer!
 
@@ -28,25 +33,30 @@ function helloWorld() {
 **This text is bold.**`);
 
   useEffect(() => {
-    // Set the default markdown in the preview
-    setMarkdown(markdown);
-  }, [markdown]);
+    // This ensures the initial markdown is set
+    // No additional action needed
+  }, []);
 
   const handleChange = (event) => {
+    // Update markdown when textarea content changes
     setMarkdown(event.target.value);
   };
 
   return (
     <div className="markdown-previewer">
-    <textarea
-      value={markdown}
-      onChange={(e) => setMarkdown(e.target.value)}
-    />
-    <div id="preview">
-      {/* Render markdown preview here */}
+      <textarea
+        id="editor"
+        value={markdown}
+        onChange={handleChange}
+        rows="10"
+        cols="50"
+      />
+      <div
+        id="preview"
+        dangerouslySetInnerHTML={{ __html: marked.parse(markdown) }}
+      />
     </div>
-  </div>
-);
-}
+  );
+};
 
 export default MarkdownPreviewer;
