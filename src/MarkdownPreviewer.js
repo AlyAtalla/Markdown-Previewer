@@ -30,7 +30,7 @@ function helloWorld() {
   useEffect(() => {
     // Set the default markdown in the preview
     setMarkdown(markdown);
-  }, []);
+  }, [markdown]);
 
   const handleChange = (event) => {
     setMarkdown(event.target.value);
@@ -38,19 +38,15 @@ function helloWorld() {
 
   return (
     <div className="markdown-previewer">
-      <textarea
-        id="editor"
-        value={markdown}
-        onChange={handleChange}
-        rows="10"
-        cols="50"
-      />
-      <div
-        id="preview"
-        dangerouslySetInnerHTML={{ __html: marked(markdown) }}
-      />
+    <textarea
+      value={markdown}
+      onChange={(e) => setMarkdown(e.target.value)}
+    />
+    <div id="preview">
+      {/* Render markdown preview here */}
     </div>
-  );
-};
+  </div>
+);
+}
 
 export default MarkdownPreviewer;
