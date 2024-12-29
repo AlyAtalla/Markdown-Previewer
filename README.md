@@ -6,6 +6,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+live app
+
+https://aesthetic-selkie-c0ac19.netlify.app/
+
 In the project directory, you can run:
 
 ### `npm start`
